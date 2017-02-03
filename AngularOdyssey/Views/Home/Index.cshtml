@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@Scripts.Render("~/bundles/systemjs")
+<script>
+        System.import('../Scripts/main').catch(function (err)
+        {
+            console.error(err);
+        });
+</script>
+
+<base href="/">
+<odyssey-app>
+    <div class="splash">
+        <h1>Chargement...</h1>
+    </div>
+</odyssey-app>
+
+
+<script type="text/javascript">
+    CurrentUser = @Html.Raw(Json.Encode(ViewBag.utilisateur));
+</script>

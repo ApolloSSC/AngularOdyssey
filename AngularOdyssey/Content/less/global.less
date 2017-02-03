@@ -1,0 +1,59 @@
+﻿@import "../bootstrap/bootstrap.less";
+@import "sidebar.less";
+
+body {
+    padding-top: 50px;
+    padding-bottom: 0px;
+    background-color: @gray-lighter;
+}
+#content{
+    margin-left:230px;
+}
+
+.splash {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: @gray-lighter;
+    h1 {
+        color: #000;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+        transform: translate(0, -50%);
+    }
+}
+
+.loading-overlay{
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    /* background: #FFF; */
+    z-index: 99999999999999;
+    .loading-background{
+        background: #FFF;
+        opacity: 0.5;
+        position: fixed;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
+    .progress{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        height: 5px;
+    }
+}
+
+.no-padding{
+    padding:0px!important;
+}
+

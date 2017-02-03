@@ -1,0 +1,13 @@
+<odyssey-header></odyssey-header>
+<odyssey-sidebar></odyssey-sidebar>
+<div id="content">
+    <router-outlet></router-outlet>
+</div>
+
+<div class="loading-overlay" *ngIf="sharedService.loading">
+    <div class="loading-background"></div>
+    <div class="progress progress-sm active">
+        <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" style="width: 100%">
+        </div>
+    </div>
+</div>

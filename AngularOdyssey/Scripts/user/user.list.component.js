@@ -12,6 +12,7 @@ const core_1 = require("@angular/core");
 const user_service_1 = require("./user.service");
 const shared_service_1 = require("../common/shared.service");
 const router_1 = require("@angular/router");
+const file_saver_1 = require("file-saver");
 let UserListComponent = class UserListComponent {
     constructor(userService, sharedService, router) {
         this.userService = userService;
@@ -21,18 +22,93 @@ let UserListComponent = class UserListComponent {
         this.message = 'Popover description';
         this.confirmClicked = false;
         this.cancelClicked = false;
-        this.loadItems();
+        this.page = 1;
+        this.itemsPerPage = 10;
+        this.numPages = 1;
+        this.length = 0;
+        this.noResult = false;
+        this.rows = [];
+        this.columns = [
+            { title: 'ID', name: 'Id' },
+            { title: 'Nom d\'utilisateur', name: 'UserName' },
+            { title: 'Email', name: 'Email' },
+            { title: 'Téléphone', name: 'PhoneNumber' },
+        ];
+        this.config = {
+            sorting: { columns: this.columns },
+            filtering: { filterString: '' },
+            className: ['table-condensed', 'table-bordered', 'table-clickable']
+        };
+        //this.loadItems();
     }
-    ngOnInit() { }
+    ngAfterViewInit() {
+        this.onChangeTable(this.config);
+    }
+    //private loadItems(): void {
+    //    this.userService.get()
+    //        .subscribe(
+    //        users => {
+    //            this.users = users;
+    //            this.onChangeTable(this.config);
+    //        }, //Bind to view
+    //        err => {
+    //            // Log errors if any
+    //            console.log(err);
+    //        });
+    //}
     loadItems() {
-        this.userService.get()
+        this.userService.getForGrid((this.page - 1) * this.itemsPerPage, this.itemsPerPage, this.getSorting(), this.config.filtering.filterString)
             .subscribe(users => {
-            this.users = users;
+            if (users.total <= (this.page - 1) * this.itemsPerPage) {
+                this.page = 1;
+                if (users.total == 0) {
+                    this.rows = users.data;
+                    this.noResult = true;
+                }
+                else {
+                    this.noResult = false;
+                }
+            }
+            else {
+                this.noResult = false;
+                this.length = users.total;
+                this.rows = users.data;
+            }
         }, //Bind to view
         err => {
-            // Log errors if any
+            //Log errors if any
             console.log(err);
         });
+    }
+    exportCsv() {
+        this.userService.downloadCsv()
+            .subscribe(data => {
+            var blob = new Blob([data], { type: 'text/csv' });
+            file_saver_1.saveAs(blob, "export.csv");
+        }, //Bind to view
+        err => {
+            //Log errors if any
+            console.log(err);
+        });
+    }
+    getSorting() {
+        let sorting = "";
+        for (let column of this.columns) {
+            if (column.sort == "asc" || column.sort == "desc")
+                sorting = column.name + column.sort;
+        }
+        return sorting;
+    }
+    onChangeTable(conf, page = { page: this.page, itemsPerPage: this.itemsPerPage }) {
+        if (conf.sorting) {
+            Object.assign(this.config.sorting, conf.sorting);
+        }
+        this.page = page.page;
+        this.loadItems();
+    }
+    onCellClick(data) {
+        console.log(data);
+        this.router.navigate(['/user', data.row.Id]);
     }
 };
 UserListComponent = __decorate([

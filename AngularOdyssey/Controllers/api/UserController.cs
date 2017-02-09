@@ -10,6 +10,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Web;
 using System.Web.Http;
+using System.Text;
+using System.Data.SqlTypes;
+using System.Reflection;
 
 namespace AngularOdyssey.Controllers.api
 {
@@ -27,15 +30,144 @@ namespace AngularOdyssey.Controllers.api
                 _userManager = value;
             }
         }
-
         public override IEnumerable<ApplicationUser> Get()
         {
-            return UserManager.Users;
+            var users = UserManager.Users.ToList();
+            return users;
         }
 
         public override ApplicationUser Get(string id)
         {
             return UserManager.Users.FirstOrDefault(u => u.Id.Equals(id));
+        }
+
+        public override PagedListViewModel GetWithParams()
+        {
+
+            var parameters = Request.GetQueryNameValuePairs();
+            int startIndex = 0;
+            int nbPages = 1;
+            int pageSize = -1;
+            string sort = string.Empty;
+            bool reverse = false;
+
+            IEnumerable<ApplicationUser> listElements = UserManager.Users;
+            foreach (var p in parameters)
+            {
+                switch (p.Key)
+                {
+                    case START_PARAM:
+                        int.TryParse(p.Value, out startIndex);
+                        break;
+                    case PAGE_SIZE_PARAM:
+                        int.TryParse(p.Value, out pageSize);
+                        break;
+                    case SEARCH_PARAM:
+                        var filters = parameters.Where(param => param.Key == FILTERS_PARAM);
+                        if (filters.Any())
+                        {
+                            listElements = listElements.Where(e => genericWhere(e, p.Value, filters));
+                        }
+                        else
+                        {
+                            listElements = listElements.Where(e => genericWhere(e, p.Value, null));
+                        }
+                        break;
+                    case SORT_PARAM:
+                        sort = p.Value;
+                        if ( p.Value.EndsWith("asc"))
+                        {
+                            sort = sort.Substring(0, sort.Length - 3);
+                        }
+                        else if ( p.Value.EndsWith("desc") )
+                        {
+                            reverse = true;
+                            sort = sort.Substring(0, sort.Length - 4);
+                        }
+                        break;
+                }
+            }
+
+            //Sort
+            if (!string.IsNullOrEmpty(sort))
+            {
+                if (!reverse)
+                {
+                    listElements = listElements.OrderBy(c => c.GetType().GetProperty(sort).GetValue(c, null));
+                }
+                else
+                {
+                    listElements = listElements.OrderByDescending(c => c.GetType().GetProperty(sort).GetValue(c, null));
+                }
+            }
+
+            //Pages calculation
+            int total = listElements.Count();
+            if (pageSize > 0)
+            {
+                nbPages = (total - 1) / pageSize + 1;
+
+                //Get Result page
+                listElements = listElements.Skip(startIndex).Take(pageSize);
+            }
+
+            listElements = listElements.ToList();
+
+            // Return the list of customers
+            return new PagedListViewModel
+            {
+                data = listElements.ToList<object>(),
+                total = total
+            };
+        }
+
+        public string GetCsv()
+        {
+            var users = UserManager.Users.ToList();
+
+            StringBuilder sb = new StringBuilder();
+            //Get properties using reflection.
+            IList<PropertyInfo> propertyInfos = typeof(ApplicationUser).GetProperties();
+            
+            //add header line.
+            foreach (PropertyInfo propertyInfo in propertyInfos)
+            {
+                sb.Append(propertyInfo.Name).Append(",");
+            }
+            sb.Remove(sb.Length - 1, 1).AppendLine();
+
+            //add value for each property.
+            foreach (ApplicationUser obj in users)
+            {
+                foreach (PropertyInfo propertyInfo in propertyInfos)
+                {
+                    sb.Append(MakeValueCsvFriendly(propertyInfo.GetValue(obj, null))).Append(",");
+                }
+                sb.Remove(sb.Length - 1, 1).AppendLine();
+            }
+
+            return sb.ToString();
+        }
+
+        //get the csv value for field.
+        private string MakeValueCsvFriendly(object value)
+        {
+            if (value == null) return "";
+            if (value is Nullable && ((INullable)value).IsNull) return "";
+
+            if (value is DateTime)
+            {
+                if (((DateTime)value).TimeOfDay.TotalSeconds == 0)
+                    return ((DateTime)value).ToString("yyyy-MM-dd");
+                return ((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss");
+            }
+            string output = value.ToString();
+
+            if (output.Contains(",") || output.Contains("\""))
+                output = '"' + output.Replace("\"", "\"\"") + '"';
+
+            return output;
+
         }
 
         [HttpPost]

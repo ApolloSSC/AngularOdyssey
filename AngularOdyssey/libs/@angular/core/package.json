@@ -2,7 +2,7 @@
   "_args": [
     [
       "@angular/core@~2.4.0",
-      "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey"
+      "G:\\Apollo\\AngularOdyssey\\AngularOdyssey"
     ]
   ],
   "_from": "@angular/core@>=2.4.0-0 <2.5.0-0",
@@ -35,7 +35,7 @@
   "_shasum": "4abec78ee035b27e8192acf70409c3dbca24e829",
   "_shrinkwrap": null,
   "_spec": "@angular/core@~2.4.0",
-  "_where": "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey",
+  "_where": "G:\\Apollo\\AngularOdyssey\\AngularOdyssey",
   "author": {
     "name": "angular"
   },

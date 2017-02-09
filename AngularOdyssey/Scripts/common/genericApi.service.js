@@ -14,6 +14,7 @@ class GenericApiService {
         this.controllerName = "";
     }
     get() {
+        this.sharedService.startLoading();
         // Return response
         return this.http
             .get(this.fichesUrl + this.controllerName)
@@ -30,18 +31,28 @@ class GenericApiService {
             .map((res) => this.manageSuccess(res))
             .catch((error) => this.manageError(error));
     }
-    //getForGrid(params: any, searchText?: string): Observable<GridDataResult> {
-    //    const endPoint = '/getWithParams';
-    //    let queryStr = `${toODataString(params)}&$count=true`;
-    //    if (searchText) {
-    //        queryStr += '&search=' + searchText;
-    //    }
-    //    // Return response
-    //    return this.http
-    //        .get(this.fichesUrl + this.controllerName + endPoint + '?' + queryStr)
-    //        .map((res: Response) => this.manageSuccess(res))
-    //        .catch((error: any) => this.manageError(error));
-    //}
+    getForGrid(skip = 0, take = 10, sort = "", searchText) {
+        this.sharedService.startLoading();
+        const endPoint = '/getWithParams';
+        let queryStr = `skip=` + skip + `&take=` + take + `&sort=` + sort + `&$count=true`;
+        if (searchText) {
+            queryStr += '&search=' + searchText;
+        }
+        // Return response
+        return this.http
+            .get(this.fichesUrl + this.controllerName + endPoint + '?' + queryStr)
+            .map((res) => this.manageSuccess(res))
+            .catch((error) => this.manageError(error));
+    }
+    downloadCsv() {
+        this.sharedService.startLoading();
+        const endPoint = '/getCsv';
+        // Return response
+        return this.http
+            .get(this.fichesUrl + this.controllerName + endPoint)
+            .map((res) => this.manageSuccess(res))
+            .catch((error) => this.manageError(error));
+    }
     update(id, obj) {
         this.sharedService.startLoading();
         const endPoint = '/' + id;

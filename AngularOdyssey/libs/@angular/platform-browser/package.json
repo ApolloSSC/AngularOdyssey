@@ -2,7 +2,7 @@
   "_args": [
     [
       "@angular/platform-browser@~2.4.0",
-      "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey"
+      "G:\\Apollo\\AngularOdyssey\\AngularOdyssey"
     ]
   ],
   "_from": "@angular/platform-browser@>=2.4.0-0 <2.5.0-0",
@@ -35,7 +35,7 @@
   "_shasum": "ded44169d4a870d5ee40e95496d34e9ab03c2c3a",
   "_shrinkwrap": null,
   "_spec": "@angular/platform-browser@~2.4.0",
-  "_where": "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey",
+  "_where": "G:\\Apollo\\AngularOdyssey\\AngularOdyssey",
   "author": {
     "name": "angular"
   },

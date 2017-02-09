@@ -21,7 +21,10 @@ gulp.task("scriptsNStyles", () => {
             '@angular/**',
             'jquery/dist/jquery.*js',
             'ng2-toastr/**',
-            'angular-confirmation-popover/**'
+            'ng2-table/**',
+            'ng2-bootstrap/**',
+            'angular-confirmation-popover/**',
+            'file-saver/**'
     ], {
         cwd: "node_modules/**"
     })

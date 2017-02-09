@@ -2,6 +2,7 @@
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { SharedService } from './shared.service';
+import { GridDataResult } from '../model/gridDataResult.model';
 
 // Decorator to tell Angular that this class can be injected as a service to another class
 export class GenericApiService {
@@ -19,6 +20,7 @@ export class GenericApiService {
     protected controllerName = "";
 
     get(): Observable<any[]> {
+        this.sharedService.startLoading();
         // Return response
         return this.http
             .get(this.fichesUrl + this.controllerName)
@@ -39,18 +41,30 @@ export class GenericApiService {
             .catch((error: any) => this.manageError(error));
     }
 
-    //getForGrid(params: any, searchText?: string): Observable<GridDataResult> {
-    //    const endPoint = '/getWithParams';
-    //    let queryStr = `${toODataString(params)}&$count=true`;
-    //    if (searchText) {
-    //        queryStr += '&search=' + searchText;
-    //    }
-    //    // Return response
-    //    return this.http
-    //        .get(this.fichesUrl + this.controllerName + endPoint + '?' + queryStr)
-    //        .map((res: Response) => this.manageSuccess(res))
-    //        .catch((error: any) => this.manageError(error));
-    //}
+    getForGrid(skip = 0, take = 10, sort = "", searchText?: string): Observable<GridDataResult> {
+        this.sharedService.startLoading();
+        const endPoint = '/getWithParams';
+        let queryStr = `skip=` + skip + `&take=` + take + `&sort=` + sort + `&$count=true`;
+        if (searchText) {
+            queryStr += '&search=' + searchText;
+        }
+        // Return response
+        return this.http
+            .get(this.fichesUrl + this.controllerName + endPoint + '?' + queryStr)
+            .map((res: Response) => this.manageSuccess(res))
+            .catch((error: any) => this.manageError(error));
+    }
+
+    downloadCsv(): Observable<string> {
+        this.sharedService.startLoading();
+        const endPoint = '/getCsv';
+
+        // Return response
+        return this.http
+            .get(this.fichesUrl + this.controllerName + endPoint)
+            .map((res: Response) => this.manageSuccess(res))
+            .catch((error: any) => this.manageError(error));
+    }
 
     update(id: any, obj: any) {
         this.sharedService.startLoading();

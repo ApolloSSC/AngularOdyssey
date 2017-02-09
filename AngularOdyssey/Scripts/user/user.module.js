@@ -14,6 +14,8 @@ const user_list_component_1 = require("./user.list.component");
 const user_service_1 = require("./user.service");
 const global_1 = require("../common/global");
 const router_1 = require("@angular/router");
+const ng2_table_1 = require("ng2-table/ng2-table");
+const ng2_bootstrap_1 = require("ng2-bootstrap");
 let UserModule = class UserModule {
 };
 UserModule = __decorate([
@@ -23,7 +25,9 @@ UserModule = __decorate([
             forms_1.FormsModule,
             http_1.HttpModule,
             http_1.JsonpModule,
-            router_1.RouterModule
+            router_1.RouterModule,
+            ng2_table_1.Ng2TableModule,
+            ng2_bootstrap_1.PaginationModule.forRoot()
         ],
         declarations: [
             user_edit_component_1.UserEditComponent,

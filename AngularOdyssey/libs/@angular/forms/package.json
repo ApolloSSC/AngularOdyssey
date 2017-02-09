@@ -2,7 +2,7 @@
   "_args": [
     [
       "@angular/forms@~2.4.0",
-      "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey"
+      "G:\\Apollo\\AngularOdyssey\\AngularOdyssey"
     ]
   ],
   "_from": "@angular/forms@>=2.4.0-0 <2.5.0-0",
@@ -35,7 +35,7 @@
   "_shasum": "aca73ad404ebe3022ffb6461cb6c06da864185fe",
   "_shrinkwrap": null,
   "_spec": "@angular/forms@~2.4.0",
-  "_where": "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey",
+  "_where": "G:\\Apollo\\AngularOdyssey\\AngularOdyssey",
   "author": {
     "name": "angular"
   },

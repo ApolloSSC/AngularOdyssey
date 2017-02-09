@@ -2,7 +2,7 @@
   "_args": [
     [
       "ng2-toastr@^1.4.0",
-      "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey"
+      "G:\\Apollo\\AngularOdyssey\\AngularOdyssey"
     ]
   ],
   "_from": "ng2-toastr@>=1.4.0-0 <2.0.0-0",
@@ -35,7 +35,7 @@
   "_shasum": "d918fcce08d65468dcaabec071016120f5f632c2",
   "_shrinkwrap": null,
   "_spec": "ng2-toastr@^1.4.0",
-  "_where": "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey",
+  "_where": "G:\\Apollo\\AngularOdyssey\\AngularOdyssey",
   "author": {
     "name": "Derek Shi"
   },

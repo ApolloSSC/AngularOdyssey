@@ -2,7 +2,7 @@
   "_args": [
     [
       "rxjs@^5.0.3",
-      "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey"
+      "G:\\Apollo\\AngularOdyssey\\AngularOdyssey"
     ]
   ],
   "_from": "rxjs@>=5.0.3-0 <6.0.0-0",
@@ -35,7 +35,7 @@
   "_shasum": "0aa9018b7f440b505fa42bd742b6738be550e720",
   "_shrinkwrap": null,
   "_spec": "rxjs@^5.0.3",
-  "_where": "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey",
+  "_where": "G:\\Apollo\\AngularOdyssey\\AngularOdyssey",
   "author": {
     "email": "blesh@netflix.com",
     "name": "Ben Lesh"

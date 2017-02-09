@@ -14,24 +14,44 @@
         </li>
     </ol>
 </section>
-<section class="content">
-    <div class="box box-primary">
-        <div class="box-body no-padding">
+<section>
 
-            <!--<button class="btn btn-default"
-                    mwlConfirmationPopover
-                    [title]="title"
-                    [message]="message"
-                    placement="left"
-                    (confirm)="confirmClicked = true"
-                    (cancel)="cancelClicked = true">
-                test
-            </button>-->
+    <!-- Filtrer toutes les colonnes -->
+    <div class="row">
+        <div class="col-md-12">
+            <input placeholder="Rechercher parmi toutes les colonnes"
+                    class="form-control"
+                    [(ngModel)]="config.filtering.filterString"
+                    (keyup.enter)="loadItems()" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Table -->
+            <ng-table [config]="config"
+                        (tableChanged)="onChangeTable(config)"
+                        (cellClicked)="onCellClick($event)"
+                        [rows]="rows" [columns]="columns">
+            </ng-table>
+            <!-- Pagination -->
+            <pagination *ngIf="!noResult"
+                        class="pagination-sm"
+                        [(ngModel)]="page"
+                        [totalItems]="length"
+                        [itemsPerPage]="itemsPerPage"
+                        [maxSize]="maxSize"
+                        [boundaryLinks]="true"
+                        [rotate]="false"
+                        (pageChanged)="onChangeTable(config,$event)"
+                        (numPages)="numPages = $event">
+            </pagination>
+            <pre *ngIf="!noResult" class="card card-block card-header">Page: {{page}} / {{numPages}}</pre>
 
-            <ul>
-                <li></li>
-            </ul>
+            <div *ngIf="noResult">
+                No result
+            </div>
 
+            <button (click)="exportCsv()">Export CSV</button>
         </div>
     </div>
 

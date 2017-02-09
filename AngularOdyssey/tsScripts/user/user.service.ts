@@ -14,4 +14,5 @@ export class UserService extends GenericApiService {
         super(http, sharedService);
         this.controllerName = 'user';
     }
+    
 }

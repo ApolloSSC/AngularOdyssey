@@ -27,6 +27,9 @@
             'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
             'angular-confirmation-popover': 'npm:angular-confirmation-popover/dist/umd/angular-confirmation-popover.js',
             'ng2-toastr': 'npm:ng2-toastr',
+            'ng2-table': 'npm:ng2-table',
+            'ng2-bootstrap': 'npm:ng2-bootstrap',
+            'file-saver': 'npm:file-saver',
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -42,6 +45,18 @@
                 defaultExtension: 'js'
             },
             'ng2-toastr': {
+                defaultExtension: 'js'
+            },
+            'ng2-table': {
+                main: './ng2-table.js',
+                defaultExtension: 'js'
+            },
+            'ng2-bootstrap': {
+                main: './bundles/ng2-bootstrap.umd.js',
+                defaultExtension: 'js'
+            },
+            'file-saver': {
+                main: './file-saver/FileSaver.min.js',
                 defaultExtension: 'js'
             }
         }

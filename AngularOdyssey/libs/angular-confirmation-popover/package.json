@@ -2,7 +2,7 @@
   "_args": [
     [
       "angular-confirmation-popover@^2.1.2",
-      "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey"
+      "G:\\Apollo\\AngularOdyssey\\AngularOdyssey"
     ]
   ],
   "_from": "angular-confirmation-popover@>=2.1.2-0 <3.0.0-0",
@@ -35,7 +35,7 @@
   "_shasum": "780a6016ac1bb24912fe0b751de3c3f429f06aa5",
   "_shrinkwrap": null,
   "_spec": "angular-confirmation-popover@^2.1.2",
-  "_where": "E:\\Apollo\\Odyssey\\AngularOdyssey\\AngularOdyssey",
+  "_where": "G:\\Apollo\\AngularOdyssey\\AngularOdyssey",
   "author": {
     "name": "Matt Lewis"
   },

@@ -12,7 +12,7 @@ const core_1 = require("@angular/core");
 const user_service_1 = require("./user.service");
 const shared_service_1 = require("../common/shared.service");
 const router_1 = require("@angular/router");
-const FileSaver = require("file-saver");
+const file_saver_1 = require("file-saver");
 let UserListComponent = class UserListComponent {
     constructor(userService, sharedService, router) {
         this.userService = userService;
@@ -84,7 +84,7 @@ let UserListComponent = class UserListComponent {
         this.userService.downloadCsv()
             .subscribe(data => {
             var blob = new Blob([data], { type: 'text/csv' });
-            FileSaver(blob, "export.csv");
+            file_saver_1.saveAs(blob, "export.csv");
         }, //Bind to view
         err => {
             //Log errors if any

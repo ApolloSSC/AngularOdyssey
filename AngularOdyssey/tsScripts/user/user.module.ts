@@ -9,7 +9,6 @@ import { GlobalVariables } from '../common/global';
 import { Routes, RouterModule } from '@angular/router';
 import { Ng2TableModule } from 'ng2-table/ng2-table';
 import { PaginationModule } from 'ng2-bootstrap';
-import { saveAs } from 'file-saver';
 
 @NgModule({
     imports: [

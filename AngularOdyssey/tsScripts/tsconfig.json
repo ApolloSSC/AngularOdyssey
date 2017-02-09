@@ -10,7 +10,10 @@
     "sourceMap": true,
     "target": "es6",
     "moduleResolution": "node",
-    "lib": [ "es5", "dom" ]
+    "lib": [ "es5", "dom" ],
+    "typeRoots": [
+      "libs/@types/filesaver"
+    ]
   },
   "exclude": [
     "node_modules",

@@ -30,6 +30,7 @@
             'ng2-table': 'npm:ng2-table',
             'ng2-bootstrap': 'npm:ng2-bootstrap',
             'file-saver': 'npm:file-saver',
+            '@types/filesaver': 'npm:@types/filesaver'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -56,7 +57,7 @@
                 defaultExtension: 'js'
             },
             'file-saver': {
-                main: './file-saver/FileSaver.min.js',
+                main: './FileSaver.js',
                 defaultExtension: 'js'
             }
         }

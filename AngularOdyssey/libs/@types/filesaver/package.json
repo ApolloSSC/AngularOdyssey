@@ -1,0 +1,66 @@
+{
+  "_args": [
+    [
+      "@types/filesaver@0.0.30",
+      "G:\\Apollo\\AngularOdyssey\\AngularOdyssey"
+    ]
+  ],
+  "_from": "@types/filesaver@0.0.30",
+  "_id": "@types/filesaver@0.0.30",
+  "_inCache": true,
+  "_location": "/@types/filesaver",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/filesaver-0.0.30.tgz_1474306324892_0.9465952550526708"
+  },
+  "_npmUser": {
+    "email": "ts-npm-types@microsoft.com",
+    "name": "types"
+  },
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "@types/filesaver",
+    "raw": "@types/filesaver@0.0.30",
+    "rawSpec": "0.0.30",
+    "scope": "@types",
+    "spec": "0.0.30",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@types/filesaver/-/filesaver-0.0.30.tgz",
+  "_shasum": "714896f56a48f648bf0c50273c771a35f3580027",
+  "_shrinkwrap": null,
+  "_spec": "@types/filesaver@0.0.30",
+  "_where": "G:\\Apollo\\AngularOdyssey\\AngularOdyssey",
+  "author": "Cyril Schumacher <https://github.com/cyrilschumacher>",
+  "dependencies": {},
+  "deprecated": "This package has been moved to @types/file-saver",
+  "description": "TypeScript definitions for FileSaver.js",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "714896f56a48f648bf0c50273c771a35f3580027",
+    "tarball": "https://registry.npmjs.org/@types/filesaver/-/filesaver-0.0.30.tgz"
+  },
+  "installable": true,
+  "license": "MIT",
+  "main": "",
+  "maintainers": [
+    {
+      "name": "types",
+      "email": "ryan.cavanaugh@microsoft.com"
+    }
+  ],
+  "name": "@types/filesaver",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/DefinitelyTyped/DefinitelyTyped.git"
+  },
+  "scripts": {},
+  "typesPublisherContentHash": "37cfeb97f6bf6ff613d214b36b10f57946c50a377c8ff2a5d934647689b34f9c",
+  "typings": "index.d.ts",
+  "version": "0.0.30"
+}

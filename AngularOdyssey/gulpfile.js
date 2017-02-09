@@ -24,7 +24,8 @@ gulp.task("scriptsNStyles", () => {
             'ng2-table/**',
             'ng2-bootstrap/**',
             'angular-confirmation-popover/**',
-            'file-saver/**'
+            'file-saver/**',
+            '@types/filesaver/**'
     ], {
         cwd: "node_modules/**"
     })

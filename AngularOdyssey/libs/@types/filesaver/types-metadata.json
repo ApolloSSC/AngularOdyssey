@@ -1,0 +1,25 @@
+{
+    "authors": "Cyril Schumacher <https://github.com/cyrilschumacher>",
+    "definitionFilename": "index.d.ts",
+    "libraryDependencies": [],
+    "moduleDependencies": [],
+    "libraryMajorVersion": "0",
+    "libraryMinorVersion": "0",
+    "libraryName": "FileSaver.js",
+    "typingsPackageName": "filesaver",
+    "projectName": "https://github.com/eligrey/FileSaver.js/",
+    "sourceRepoURL": "https://www.github.com/DefinitelyTyped/DefinitelyTyped",
+    "sourceBranch": "types-2.0",
+    "kind": "Mixed",
+    "globals": [
+        "saveAs"
+    ],
+    "declaredModules": [
+        "file-saver"
+    ],
+    "files": [
+        "index.d.ts"
+    ],
+    "hasPackageJson": false,
+    "contentHash": "37cfeb97f6bf6ff613d214b36b10f57946c50a377c8ff2a5d934647689b34f9c"
+}

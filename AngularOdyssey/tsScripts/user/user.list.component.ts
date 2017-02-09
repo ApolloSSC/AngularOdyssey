@@ -6,7 +6,7 @@ import { GridDataResult } from '../model/gridDataResult.model';
 import { SharedService } from '../common/shared.service';
 import { RouterModule, Routes, Router, RouterLink } from '@angular/router';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import { saveAs } from 'file-saver';
+import * as FileSaver from 'file-saver';
 
 @Component({
     moduleId: module.id,
@@ -85,7 +85,7 @@ export class UserListComponent{
                     download: string;
                 }
                 var blob = new Blob([data], { type: 'text/csv' });
-                saveAs(blob, "export.csv");
+                FileSaver(blob, "export.csv");
             }, //Bind to view
             err => {
                 //Log errors if any

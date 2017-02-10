@@ -29,4 +29,3 @@ SidebarComponent = __decorate([
     __metadata("design:paramtypes", [router_1.Router])
 ], SidebarComponent);
 exports.SidebarComponent = SidebarComponent;
-//# sourceMappingURL=sidebar.component.js.map

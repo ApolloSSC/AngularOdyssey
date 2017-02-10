@@ -13,6 +13,10 @@ using System.Web.Http;
 using System.Text;
 using System.Data.SqlTypes;
 using System.Reflection;
+using OfficeOpenXml;
+using System.IO;
+using System.Web.Mvc;
+using System.Net.Http.Headers;
 
 namespace AngularOdyssey.Controllers.api
 {
@@ -132,7 +136,7 @@ namespace AngularOdyssey.Controllers.api
             //add header line.
             foreach (PropertyInfo propertyInfo in propertyInfos)
             {
-                sb.Append(propertyInfo.Name).Append(",");
+                sb.Append(propertyInfo.Name).Append(";");
             }
             sb.Remove(sb.Length - 1, 1).AppendLine();
 
@@ -141,7 +145,7 @@ namespace AngularOdyssey.Controllers.api
             {
                 foreach (PropertyInfo propertyInfo in propertyInfos)
                 {
-                    sb.Append(MakeValueCsvFriendly(propertyInfo.GetValue(obj, null))).Append(",");
+                    sb.Append(MakeValueCsvFriendly(propertyInfo.GetValue(obj, null))).Append(";");
                 }
                 sb.Remove(sb.Length - 1, 1).AppendLine();
             }
@@ -154,23 +158,64 @@ namespace AngularOdyssey.Controllers.api
         {
             if (value == null) return "";
             if (value is Nullable && ((INullable)value).IsNull) return "";
-
-            if (value is DateTime)
+            string output = "";
+            if (value.GetType().GetInterface("IEnumerable") == null || value.GetType() == typeof(string))
             {
-                if (((DateTime)value).TimeOfDay.TotalSeconds == 0)
-                    return ((DateTime)value).ToString("yyyy-MM-dd");
-                return ((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss");
+
+
+                if (value is DateTime)
+                {
+                    if (((DateTime)value).TimeOfDay.TotalSeconds == 0)
+                        return ((DateTime)value).ToString("yyyy-MM-dd");
+                    return ((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss");
+                }
+                output = value.ToString();
+
+                if (output.Contains(";") || output.Contains("\""))
+                    output = '"' + output.Replace("\"", "\"\"") + '"';
+
             }
-            string output = value.ToString();
+            else
+            {
+                var enumerable = value as System.Collections.IEnumerable;
+                if (enumerable != null)
+                {
+                    foreach (var item in enumerable)
+                        output += MakeValueCsvFriendly(item) + ' ';
+                }
+                else
+                    output = value.ToString();
 
-            if (output.Contains(",") || output.Contains("\""))
-                output = '"' + output.Replace("\"", "\"\"") + '"';
-
+            }
             return output;
-
         }
 
-        [HttpPost]
+        public HttpResponseMessage GetXlsx()
+        {
+
+            string path = HttpContext.Current.Server.MapPath("~/App_Data/tmp.xlsx");
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+            using (ExcelPackage excel = new ExcelPackage(new FileInfo(path)))
+            {
+                var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
+                workSheet.Cells[1, 1].LoadFromCollection(UserManager.Users.ToList(), true);
+                var fileStream = new MemoryStream();
+                excel.Save();
+                //fileStream.Position = 0;
+            }
+            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+            var stream = new FileStream(path, FileMode.Open);
+            result.Content = new StreamContent(stream);
+            result.Content.Headers.ContentType =
+            new MediaTypeHeaderValue("application/octet-stream");
+            return result;
+        }
+
+        [System.Web.Http.HttpPost]
         public override ApplicationUser Post(ApplicationUser user)
         {
             if (ModelState.IsValid)
@@ -190,7 +235,7 @@ namespace AngularOdyssey.Controllers.api
             return null;
         }
 
-        [HttpPut]
+        [System.Web.Http.HttpPut]
         // PUT api/<controller>/5
         public override void Put(string id, ApplicationUser user)
         {

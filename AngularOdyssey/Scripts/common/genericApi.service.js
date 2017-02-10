@@ -1,4 +1,6 @@
 "use strict";
+// Imports
+const http_1 = require("@angular/http");
 const Rx_1 = require("rxjs/Rx");
 // Decorator to tell Angular that this class can be injected as a service to another class
 class GenericApiService {
@@ -53,6 +55,16 @@ class GenericApiService {
             .map((res) => this.manageSuccess(res))
             .catch((error) => this.manageError(error));
     }
+    downloadXlsx() {
+        this.sharedService.startLoading();
+        const endPoint = '/getXlsx';
+        var headers = new http_1.Headers();
+        // Return response
+        return this.http
+            .get(this.fichesUrl + this.controllerName + endPoint, { responseType: http_1.ResponseContentType.Blob })
+            .map((res) => this.manageSuccessText(res))
+            .catch((error) => this.manageError(error));
+    }
     update(id, obj) {
         this.sharedService.startLoading();
         const endPoint = '/' + id;
@@ -89,6 +101,12 @@ class GenericApiService {
         }
         return res.json();
     }
+    manageSuccessText(res, toastMsg) {
+        this.sharedService.endLoading();
+        if (toastMsg) {
+            this.sharedService.successToast(toastMsg);
+        }
+        return res;
+    }
 }
 exports.GenericApiService = GenericApiService;
-//# sourceMappingURL=genericApi.service.js.map

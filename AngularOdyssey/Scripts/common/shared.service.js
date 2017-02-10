@@ -45,4 +45,3 @@ SharedService = __decorate([
     __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager])
 ], SharedService);
 exports.SharedService = SharedService;
-//# sourceMappingURL=shared.service.js.map

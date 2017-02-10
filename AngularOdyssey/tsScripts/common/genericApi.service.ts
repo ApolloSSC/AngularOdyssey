@@ -1,8 +1,9 @@
 ﻿// Imports
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, URLSearchParams, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { SharedService } from './shared.service';
 import { GridDataResult } from '../model/gridDataResult.model';
+import * as saveAs from "file-saver"
 
 // Decorator to tell Angular that this class can be injected as a service to another class
 export class GenericApiService {
@@ -66,6 +67,18 @@ export class GenericApiService {
             .catch((error: any) => this.manageError(error));
     }
 
+    downloadXlsx(): Observable<Response> {
+        this.sharedService.startLoading();
+        const endPoint = '/getXlsx';
+        var headers = new Headers();
+
+        // Return response
+        return this.http
+            .get(this.fichesUrl + this.controllerName + endPoint, { responseType: ResponseContentType.Blob })
+            .map((res: Response) => this.manageSuccessText(res))
+            .catch((error: any) => this.manageError(error));
+    }
+
     update(id: any, obj: any) {
         this.sharedService.startLoading();
         const endPoint = '/' + id;
@@ -107,5 +120,12 @@ export class GenericApiService {
             this.sharedService.successToast(toastMsg);
         }
         return res.json();
+    }
+    manageSuccessText(res: Response, toastMsg?: string) {
+        this.sharedService.endLoading();
+        if (toastMsg) {
+            this.sharedService.successToast(toastMsg);
+        }
+        return res;
     }
 }

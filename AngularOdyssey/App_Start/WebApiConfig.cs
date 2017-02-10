@@ -84,6 +84,12 @@ namespace AngularOdyssey
                 defaults: new { method = "getCsv" }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "ExportXlsxApi",
+                routeTemplate: "api/{controller}/getXlsx",
+                defaults: new { method = "getXlsx" }
+            );
+
             config.Routes.MapHttpRoute("DefaultApiWithAction", "Api/{controller}/{action}");
             config.Routes.MapHttpRoute("DefaultApiWithId", "Api/{controller}/{id}", new { action = "GetById", id = RouteParameter.Optional }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
             config.Routes.MapHttpRoute("DefaultApiGet", "Api/{controller}", new { action = "Get" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });

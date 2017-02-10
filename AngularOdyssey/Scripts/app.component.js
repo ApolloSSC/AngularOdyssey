@@ -28,4 +28,3 @@ AppComponent = __decorate([
     __metadata("design:paramtypes", [shared_service_1.SharedService, ng2_toastr_1.ToastsManager, core_1.ViewContainerRef])
 ], AppComponent);
 exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map

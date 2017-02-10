@@ -6,7 +6,7 @@ import { GridDataResult } from '../model/gridDataResult.model';
 import { SharedService } from '../common/shared.service';
 import { RouterModule, Routes, Router, RouterLink } from '@angular/router';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import * as FileSaver from 'file-saver';
+import * as saveAs from 'file-saver';
 
 @Component({
     moduleId: module.id,
@@ -76,22 +76,32 @@ export class UserListComponent{
             });
 
     }
-    
+
     public exportCsv() {
         this.userService.downloadCsv()
             .subscribe(
             data => {
-                interface HTMLAnchorElement {
-                    download: string;
-                }
                 var blob = new Blob([data], { type: 'text/csv' });
-                FileSaver(blob, "export.csv");
+                saveAs(blob, "export.csv");
             }, //Bind to view
             err => {
                 //Log errors if any
                 console.log(err);
             });
     }
+
+    public exportXlsx() {
+        this.userService.downloadXlsx().subscribe(
+            data => {
+                var blob = new Blob([data.blob()], { type: data.headers.get('Content-Type') });
+                saveAs(blob, "export.xlsx");
+            }, //Bind to view
+            err => {
+                //Log errors if any
+                console.log(err);
+            });
+    }
+
     private getSorting(): string {
         let sorting = "";
         for (let column of this.columns) {

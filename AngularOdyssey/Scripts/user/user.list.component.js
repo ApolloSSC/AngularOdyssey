@@ -12,7 +12,7 @@ const core_1 = require("@angular/core");
 const user_service_1 = require("./user.service");
 const shared_service_1 = require("../common/shared.service");
 const router_1 = require("@angular/router");
-const FileSaver = require("file-saver");
+const saveAs = require("file-saver");
 let UserListComponent = class UserListComponent {
     constructor(userService, sharedService, router) {
         this.userService = userService;
@@ -84,7 +84,17 @@ let UserListComponent = class UserListComponent {
         this.userService.downloadCsv()
             .subscribe(data => {
             var blob = new Blob([data], { type: 'text/csv' });
-            FileSaver(blob, "export.csv");
+            saveAs(blob, "export.csv");
+        }, //Bind to view
+        err => {
+            //Log errors if any
+            console.log(err);
+        });
+    }
+    exportXlsx() {
+        this.userService.downloadXlsx().subscribe(data => {
+            var blob = new Blob([data.blob()], { type: data.headers.get('Content-Type') });
+            saveAs(blob, "export.xlsx");
         }, //Bind to view
         err => {
             //Log errors if any
@@ -119,4 +129,3 @@ UserListComponent = __decorate([
     __metadata("design:paramtypes", [user_service_1.UserService, shared_service_1.SharedService, router_1.Router])
 ], UserListComponent);
 exports.UserListComponent = UserListComponent;
-//# sourceMappingURL=user.list.component.js.map

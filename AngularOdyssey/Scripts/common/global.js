@@ -15,4 +15,3 @@ GlobalVariables = __decorate([
     core_1.Injectable()
 ], GlobalVariables);
 exports.GlobalVariables = GlobalVariables;
-//# sourceMappingURL=global.js.map

@@ -27,4 +27,3 @@ HeaderComponent = __decorate([
     __metadata("design:paramtypes", [global_1.GlobalVariables])
 ], HeaderComponent);
 exports.HeaderComponent = HeaderComponent;
-//# sourceMappingURL=header.component.js.map

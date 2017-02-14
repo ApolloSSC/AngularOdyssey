@@ -10,5 +10,10 @@
                 <i class="fa fa-users"></i> <span>Gestion des utilisateurs</span>
             </a>
         </li>
+        <li [class.active]="routeIsActive('/panel')">
+            <a [routerLink]="['/panel']">
+                <i class="fa fa-calendar-o"></i> <span>Gestion des panneaux</span>
+            </a>
+        </li>
     </ul>
 </aside>

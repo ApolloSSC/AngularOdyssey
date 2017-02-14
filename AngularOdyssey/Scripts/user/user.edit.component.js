@@ -27,10 +27,12 @@ let UserEditComponent = class UserEditComponent {
             let id = params['id'];
             if (id) {
                 this.titre = this.titreModification;
-                this.isNew = false;
                 // Retrieve Pet with Id route param
                 this.userService.getById(id)
-                    .subscribe(user => { this.user = user; }, //Bind to view
+                    .subscribe(user => {
+                    this.user = user;
+                    this.isNew = false;
+                }, //Bind to view
                 err => {
                     // Log errors if any
                     console.log(err);

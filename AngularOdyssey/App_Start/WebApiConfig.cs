@@ -90,10 +90,12 @@ namespace AngularOdyssey
                 defaults: new { method = "getXlsx" }
             );
 
-            config.Routes.MapHttpRoute("DefaultApiWithAction", "Api/{controller}/{action}");
-            config.Routes.MapHttpRoute("DefaultApiWithId", "Api/{controller}/{id}", new { action = "GetById", id = RouteParameter.Optional }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
-            config.Routes.MapHttpRoute("DefaultApiGet", "Api/{controller}", new { action = "Get" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
-            config.Routes.MapHttpRoute("DefaultApiPost", "Api/{controller}", new { action = "Post" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            //config.Routes.MapHttpRoute("DefaultApiWithAction", "Api/{controller}/{action}");
+            //config.Routes.MapHttpRoute("DefaultApiWithId", "Api/{controller}/{id}", new { action = "GetById", id = RouteParameter.Optional }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+            //config.Routes.MapHttpRoute("DefaultApiGet", "Api/{controller}", new { action = "Get" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+            //config.Routes.MapHttpRoute("DefaultApiPost", "Api/{controller}", new { action = "Post" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
 
         }
     }

@@ -1,0 +1,40 @@
+﻿
+<section class="content-header">
+    <h1>{{titre}}</h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                Administration
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                {{titre}}
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="content">
+    <form (ngSubmit)="onSubmit()" #utilisateurForm="ngForm" autocomplete="off">
+        <div class="form-group">
+            <label for="Title">Titre du panneau</label>
+            <input id="Title"
+                   name="Title"
+                   type="text"
+                   class="form-control"
+                   required
+                   [(ngModel)]="panel.Title"
+                   #titleControl="ngModel"
+                   autocomplete="off">
+            <span [hidden]="titleControl.valid" class="text-danger">Vous devez entrer un titre !</span>
+        </div>
+
+        <div gridStack  w="12" animate="true"> </div>
+
+        <br />
+        <button type="submit" class="btn btn-default">Enregistrer</button>
+    </form>
+    <button class="btn btn-default" (click)="addCard()">Ajouter une carte</button>
+    <button class="btn btn-default" (click)="deletePanel()">Supprimer le panneau</button>
+
+</section>

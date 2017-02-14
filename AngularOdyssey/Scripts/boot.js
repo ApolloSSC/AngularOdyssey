@@ -18,6 +18,7 @@ const global_1 = require("./common/global");
 const app_routes_1 = require("./app.routes");
 const home_component_1 = require("./home/home.component");
 const user_module_1 = require("./user/user.module");
+const panel_module_1 = require("./panel/panel.module");
 const ng2_toastr_1 = require("ng2-toastr/ng2-toastr");
 const shared_service_1 = require("./common/shared.service");
 let AppModule = class AppModule {
@@ -31,6 +32,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             http_1.JsonpModule,
             user_module_1.UserModule,
+            panel_module_1.PanelModule,
             ng2_toastr_1.ToastModule.forRoot(),
         ],
         declarations: [

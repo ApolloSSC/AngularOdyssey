@@ -13,6 +13,9 @@ namespace AngularOdyssey
     {
         protected void Application_Start()
         {
+            //Unity
+            UnityConfig.RegisterComponents();
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

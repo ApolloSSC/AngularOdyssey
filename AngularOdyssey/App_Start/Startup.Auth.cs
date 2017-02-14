@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using AngularOdyssey.Models;
+using static AngularOdyssey.Models.IdentityModels;
 
 namespace AngularOdyssey
 {

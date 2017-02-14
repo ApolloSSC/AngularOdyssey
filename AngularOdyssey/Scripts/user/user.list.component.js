@@ -44,18 +44,6 @@ let UserListComponent = class UserListComponent {
     ngAfterViewInit() {
         this.onChangeTable(this.config);
     }
-    //private loadItems(): void {
-    //    this.userService.get()
-    //        .subscribe(
-    //        users => {
-    //            this.users = users;
-    //            this.onChangeTable(this.config);
-    //        }, //Bind to view
-    //        err => {
-    //            // Log errors if any
-    //            console.log(err);
-    //        });
-    //}
     loadItems() {
         this.userService.getForGrid((this.page - 1) * this.itemsPerPage, this.itemsPerPage, this.getSorting(), this.config.filtering.filterString)
             .subscribe(users => {

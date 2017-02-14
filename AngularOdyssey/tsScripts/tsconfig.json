@@ -11,6 +11,7 @@
     "target": "es6",
     "moduleResolution": "node",
     "lib": [ "es5", "dom" ],
+    "allowJs": true,
     "typeRoots": [
       "libs/@types/filesaver"
     ]

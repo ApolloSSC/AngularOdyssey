@@ -13,7 +13,7 @@ export class GenericApiService {
     protected MSG_DELETE_SUCCESS = "Suppression effectuée";
 
     // Class constructor with Jsonp injected
-    constructor(private http: Http, private sharedService: SharedService) {
+    constructor(protected http: Http, protected sharedService: SharedService) {
     }
 
     // Base URL for Petfinder API

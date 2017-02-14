@@ -11,6 +11,7 @@ import { GlobalVariables } from './common/global';
 import { routing } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
+import { PanelModule } from './panel/panel.module';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { SharedService } from './common/shared.service';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
@@ -23,6 +24,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
         HttpModule,
         JsonpModule,
         UserModule,
+        PanelModule,
         ToastModule.forRoot(),
         //ConfirmationPopoverModule.forRoot({
         //    confirmButtonType: 'danger' // set defaults here

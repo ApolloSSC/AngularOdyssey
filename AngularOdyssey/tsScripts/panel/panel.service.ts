@@ -21,7 +21,7 @@ export class PanelService extends GenericApiService {
         const endPoint = '/';
 
         return this.http
-            .post(this.fichesUrl + controllerName + endPoint, obj)
+            .post(this.apiUrl + controllerName + endPoint, obj)
             .map((res: Response) => this.manageSuccess(res, this.MSG_CREATE_SUCCESS))
             .catch((error: any) => this.manageError(error));
     }

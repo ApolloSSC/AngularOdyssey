@@ -9,8 +9,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import * as saveAs from 'file-saver';
 
 @Component({
-    moduleId: module.id,
-    templateUrl: 'panel.list.component.html'
+    template: require('./panel.list.component.html')
 })
 
 export class PanelListComponent {

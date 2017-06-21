@@ -1,0 +1,26 @@
+﻿{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "module": "commonjs",
+    "noEmitOnError": false,
+    "noImplicitAny": false,
+    "outDir": "jsScripts/",
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "lib": [ "es6", "dom" ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "include": [ "./tsScripts/**/*.ts" ],
+  "exclude": [
+    "node_modules",
+    "typings/index",
+    "typings/index.d.ts"
+  ]
+}

@@ -6,11 +6,10 @@ import { GridDataResult } from '../model/gridDataResult.model';
 import { SharedService } from '../common/shared.service';
 import { RouterModule, Routes, Router, RouterLink } from '@angular/router';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import * as saveAs from 'file-saver';
+import { saveAs } from 'file-saver';
 
 @Component({
-    moduleId: module.id,
-    templateUrl: 'user.list.component.html'
+    template: require('./user.list.component.html')
 })
 
 export class UserListComponent{

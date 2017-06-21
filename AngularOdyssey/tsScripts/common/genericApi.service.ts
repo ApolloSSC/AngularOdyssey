@@ -17,14 +17,14 @@ export class GenericApiService {
     }
 
     // Base URL for Petfinder API
-    protected fichesUrl = "http://" + window.location.host + "/api/";
+    protected apiUrl = "http://" + window.location.host + "/api/";
     protected controllerName = "";
 
     get(): Observable<any[]> {
         this.sharedService.startLoading();
         // Return response
         return this.http
-            .get(this.fichesUrl + this.controllerName)
+            .get(this.apiUrl + this.controllerName)
             .map((res: Response) => this.manageSuccess(res))
             .catch((error: any) => this.manageError(error));
     }
@@ -37,7 +37,7 @@ export class GenericApiService {
 
         // Return response
         return this.http
-            .get(this.fichesUrl + this.controllerName + endPoint)
+            .get(this.apiUrl + this.controllerName + endPoint)
             .map((res: Response) => this.manageSuccess(res))
             .catch((error: any) => this.manageError(error));
     }
@@ -51,7 +51,7 @@ export class GenericApiService {
         }
         // Return response
         return this.http
-            .get(this.fichesUrl + this.controllerName + endPoint + '?' + queryStr)
+            .get(this.apiUrl + this.controllerName + endPoint + '?' + queryStr)
             .map((res: Response) => this.manageSuccess(res))
             .catch((error: any) => this.manageError(error));
     }
@@ -62,7 +62,7 @@ export class GenericApiService {
 
         // Return response
         return this.http
-            .get(this.fichesUrl + this.controllerName + endPoint)
+            .get(this.apiUrl + this.controllerName + endPoint)
             .map((res: Response) => this.manageSuccess(res))
             .catch((error: any) => this.manageError(error));
     }
@@ -74,7 +74,7 @@ export class GenericApiService {
 
         // Return response
         return this.http
-            .get(this.fichesUrl + this.controllerName + endPoint, { responseType: ResponseContentType.Blob })
+            .get(this.apiUrl + this.controllerName + endPoint, { responseType: ResponseContentType.Blob })
             .map((res: Response) => this.manageSuccessText(res))
             .catch((error: any) => this.manageError(error));
     }
@@ -84,7 +84,7 @@ export class GenericApiService {
         const endPoint = '/' + id;
 
         return this.http
-            .put(this.fichesUrl + this.controllerName + endPoint, obj)
+            .put(this.apiUrl + this.controllerName + endPoint, obj)
             .map((res: Response) => this.manageSuccess(res, this.MSG_UPDATE_SUCCESS))
             .catch((error: any) => this.manageError(error));
     }
@@ -94,7 +94,7 @@ export class GenericApiService {
         const endPoint = '/';
 
         return this.http
-            .post(this.fichesUrl + this.controllerName + endPoint, obj)
+            .post(this.apiUrl + this.controllerName + endPoint, obj)
             .map((res: Response) => this.manageSuccess(res, this.MSG_CREATE_SUCCESS))
             .catch((error: any) => this.manageError(error));
     }
@@ -104,7 +104,7 @@ export class GenericApiService {
         const endPoint = '/' + id;
 
         return this.http
-            .delete(this.fichesUrl + this.controllerName + endPoint)
+            .delete(this.apiUrl + this.controllerName + endPoint)
             .map((res: Response) => this.manageSuccess(res, this.MSG_DELETE_SUCCESS))
             .catch((error: any) => this.manageError(error));
     }

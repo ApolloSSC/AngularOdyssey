@@ -2,13 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
-@Scripts.Render("~/bundles/systemjs")
-<script>
-        System.import('../Scripts/main').catch(function (err)
-        {
-            console.error(err);
-        });
-</script>
+@using Newtonsoft.Json
 
 <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 
@@ -21,5 +15,19 @@
 
 
 <script type="text/javascript">
-    CurrentUser = @Html.Raw(Json.Encode(ViewBag.utilisateur));
+    @{
+        JsonSerializerSettings jsonSettings =
+             new JsonSerializerSettings {
+                 PreserveReferencesHandling = PreserveReferencesHandling.None,
+                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                 DateTimeZoneHandling = DateTimeZoneHandling.Local
+             };
+    }
+    CurrentUser = @Html.Raw(JsonConvert.SerializeObject(ViewBag.utilisateur, Formatting.Indented, jsonSettings));
+    IsRelease = @(ViewBag.IsRelease == true ? "true": "false");
+
 </script>
+
+<script type="text/javascript" src="~/libs/polyfills.bundle.js"></script>
+<script type="text/javascript" src="~/libs/vendor.bundle.js"></script>
+<script type="text/javascript" src="~/libs/app.bundle.js"></script>

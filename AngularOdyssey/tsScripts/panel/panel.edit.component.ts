@@ -8,8 +8,7 @@ declare var $: any; // JQuery
 declare var _: any; // Lodash
 
 @Component({
-    moduleId: module.id,
-    templateUrl: 'panel.edit.component.html'
+    template: require('./panel.edit.component.html')
 })
 
 export class PanelEditComponent implements OnInit {

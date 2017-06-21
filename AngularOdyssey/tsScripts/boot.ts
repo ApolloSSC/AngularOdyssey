@@ -1,4 +1,4 @@
-﻿///<reference path="./../typings/globals/core-js/index.d.ts"/>
+﻿///<reference path="./../node_modules/@types/core-js/index.d.ts"/>
 ///<reference path="./../node_modules/@types/node/index.d.ts" />
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,9 +12,13 @@ import { routing } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
 import { PanelModule } from './panel/panel.module';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { SharedService } from './common/shared.service';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
+
+export class CustomToastOptions extends ToastOptions {
+    positionClass = "toast-bottom-right";
+}
 
 @NgModule({
     imports: [
@@ -26,9 +30,6 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
         UserModule,
         PanelModule,
         ToastModule.forRoot(),
-        //ConfirmationPopoverModule.forRoot({
-        //    confirmButtonType: 'danger' // set defaults here
-        //})
     ],
     declarations: [
         AppComponent,
@@ -38,7 +39,8 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     ],
     providers: [
         GlobalVariables,
-        SharedService
+        SharedService,
+        { provide: ToastOptions, useClass: CustomToastOptions }
     ],
     bootstrap: [AppComponent]
 })

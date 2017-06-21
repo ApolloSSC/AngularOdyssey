@@ -4,8 +4,7 @@ import { UserService } from './user.service';
 import { User } from '../model/user.model';
 
 @Component({
-    moduleId: module.id,
-    templateUrl: 'user.edit.component.html'
+    template: require('./user.edit.component.html')
 })
 
 export class UserEditComponent implements OnInit {

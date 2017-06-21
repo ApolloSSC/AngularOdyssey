@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Angular Odyssey</title>
     @Styles.Render("~/Styles/css")
     @Styles.Render("~/Styles/less")
+    @Scripts.Render("~/bundles/ext-js")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -17,9 +18,6 @@
         @Html.AntiForgeryToken()
     }
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/gridstack")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
